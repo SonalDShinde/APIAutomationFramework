@@ -1,0 +1,42 @@
+Swagger Api---> Banking Domain 
+
+baseURI ------> http://64.227.160.186:8080/
+
+Authentication ----> Service 
+Having Endpoints -----> api/auth/forgot-password ---> POST
+						api/auth/login				  POST
+						api/auth/reset-password		  POST
+						api/auth/signup				  POST
+						
+UserManagement -----> Service
+Endpoints               api/users/change-password ----> PUT
+						api/users/profile			    GET
+						api/users/profile				PUT
+						api/users/profile				DELETE
+						api/users/profile				PATCH
+						
+################
+Create Base Service ----> under src/test/java/---->api.base---> BaseService.java
+
+--->BaseURI ---> public static final String BASEURI ="http://64.227.160.186:8080/";
+--->RequestSpecification variable -----> private RequestSpecification requestSpecification;
+
+create Constructor of BaseService(){
+RequestSpecification = given().baseUri(BASE_URI);
+}
+--->Common HTTP Request Methods -----> 
+
+public Response postRequest(LoginRequest payload, String endpoint){
+	return requestSpecification.contentType(Content.JSON).body(payload).post(endpoints);
+}
+################
+Create Authentication service 
+----> BasePath-----> public static final String BASEPATH ="api/auth/";
+Different methods which we need to test 
+
+---Calling Http request 
+public Response login(LoginRequest payload){
+	return postRequest(payload,BASEPATH+"login");
+}
+
+
