@@ -76,7 +76,6 @@ public class AccountControllerTest {
 	    		System.out.println(response.asString());
 	    		String token = response.jsonPath().getString("token");	
 	    		System.out.println("User Login Token  :\n"+token);
-	    		token = response.jsonPath().getString("token");
 	    				
 	    	}
 

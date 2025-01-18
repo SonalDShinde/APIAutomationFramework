@@ -9,13 +9,12 @@ import org.testng.annotations.Test;
 import api.base.AuthenticationService;
 import api.pojo.request.LoginRequest;
 import api.pojo.request.SignUpRequest;
+import api.pojo.request.ResetPasswordRequest;
 import api.pojo.response.LoginResponse;
 
 
 public class AuthenticationTest {
 	
-	AuthenticationService authenticationService;
-	Response response;
 
 	
 	@Test
@@ -39,7 +38,7 @@ public class AuthenticationTest {
 		*/
 		
 		
-		//AuthenticationService authenticationService = new AuthenticationService();
+		AuthenticationService authenticationService = new AuthenticationService();
 		LoginRequest loginRequest = new LoginRequest("Xyz@123", "123456789");
 		//Serialization------> Converting POJO object Into JSON by passing LoginRequest
 		Response response =authenticationService.login(loginRequest);
@@ -57,22 +56,50 @@ public class AuthenticationTest {
 	public void createAccount() {
 		
 		SignUpRequest signUpRequest = new SignUpRequest.Builder() //Builder is static class so we call it on over class 
-				.email("abc123@gmail.com")
-				.firstName("Disha")
-				.lastName("Patni")
-				.userName("Disha@123")
-				.password("789456123")
-				.mobileNumber("5264198366")
+				.email("neha123@gmail.com")
+				.firstName("Neha")
+				.lastName("Paygude")
+				.userName("Neha@123")
+				.password("Neha12345")
+				.mobileNumber("5264898366")
 				.Build();
 		
-		//AuthenticationService authenticationService = new AuthenticationService();
+		AuthenticationService authenticationService = new AuthenticationService();
 		Response response = authenticationService.signup(signUpRequest);
-		System.out.println(response);
+		System.out.println(response.asPrettyString());
 		//Assert.assertEquals(response.getStatusCode(), 200);
 		
 		
 	}
 	
+	
+	@Test
+	public void forgotPassword() {
+		
+		AuthenticationService authenticationService = new AuthenticationService();
+		Response response= authenticationService.forgotPassword("neha123@gmail.com");
+		System.out.println(response.asPrettyString());
+		String token = response.jsonPath().getString("token");
+		System.out.println(token);
+
+		
+	}
+	
+	@Test
+	public void resetPassword() {
+		AuthenticationService authenticationService = new AuthenticationService();
+		Response response= authenticationService.forgotPassword("neha123@gmail.com");
+		String token = response.jsonPath().getString("token");
+		System.out.println(token);
+		
+		ResetPasswordRequest rs = new ResetPasswordRequest();
+		rs.setToken(token);
+		rs.setNewPassword("Neha@123");
+		rs.setConfirmPassword("123@Neha");
+		
+		response = authenticationService.resetPassword(rs, token);
+		System.out.println(response.asPrettyString());
+	}
 	
 	/*public static void loginUser() {	
 		String bseurl = "http://64.227.160.186:8080/api/auth";
