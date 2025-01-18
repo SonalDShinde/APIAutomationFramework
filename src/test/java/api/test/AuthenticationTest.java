@@ -4,6 +4,7 @@ import io.restassured.response.Response;
 import static io.restassured.RestAssured.*;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import api.base.AuthenticationService;
@@ -12,7 +13,7 @@ import api.pojo.request.SignUpRequest;
 import api.pojo.request.ResetPasswordRequest;
 import api.pojo.response.LoginResponse;
 
-
+@Listeners(api.listeners.TestListener.class)
 public class AuthenticationTest {
 	
 

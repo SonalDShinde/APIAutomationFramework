@@ -1,6 +1,7 @@
 package api.test;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import api.base.AuthenticationService;
@@ -11,6 +12,8 @@ import api.pojo.response.LoginResponse;
 import api.pojo.response.UserProfileResponse;
 import io.restassured.response.Response;
 
+
+@Listeners(api.listeners.TestListener.class)
 public class UserManagementTest {
 	
 	@Test

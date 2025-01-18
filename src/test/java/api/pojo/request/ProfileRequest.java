@@ -11,7 +11,9 @@ public class ProfileRequest {
 	public ProfileRequest() {
 	}
 
-	public ProfileRequest(String firstName, String lastName, String email, String mobileNumber) {
+	//Making this constructor private bcz dnt want to create object of the class in any other class
+	//only create object of ProfileRequest class within class
+	private ProfileRequest(String firstName, String lastName, String email, String mobileNumber) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

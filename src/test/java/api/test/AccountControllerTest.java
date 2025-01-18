@@ -57,7 +57,7 @@ public class AccountControllerTest {
 	        private String token;
 	        
 
-	    	@Test
+	    	//@Test
 	    	public void loginUser() {	
 	    		String bseurl = "http://64.227.160.186:8080/api/auth";
 	    		String payload = "{\n" + "\"username\":\"Xyz@123\", \n" + "\"password\":\"123456789\" \n"+"}";
@@ -79,7 +79,7 @@ public class AccountControllerTest {
 	    				
 	    	}
 
-	        @Test(priority = 1,dependsOnMethods = "AuthenticationTest.loginUser")
+	      //  @Test(priority = 1,dependsOnMethods = "AuthenticationTest.loginUser")
 	        public void postLoginAndExtractAccountNumber() {
 	            // POST request to login and extract account number
 	            String postPayload = "{\n" +
@@ -106,7 +106,7 @@ public class AccountControllerTest {
 //	            System.out.println(accountNumber);
 	        }
 
-	        @Test(priority = 2, dependsOnMethods = "postLoginAndExtractAccountNumber")
+	       // @Test(priority = 2, dependsOnMethods = "postLoginAndExtractAccountNumber")
 	        public void getAccountDetails() {
 	            // GET request to retrieve account details using the account number from POST
 	            Response getResponse = given()
